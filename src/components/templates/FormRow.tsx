@@ -10,6 +10,15 @@ interface Props {
 
 export const FormRow :  React.FC<Props> = (props) => {
 
+    const lookForName = (el : any) : string | undefined=> {
+        console.log(el)
+        return undefined;
+        // const input = el.target.querySelector('button[name]') || el.target.querySelector('input[name]')
+        // if(input)
+        //     return input.name;
+        // return undefined;
+    }
+
     const generateRow = () => {
 
         if(props.children){
@@ -27,8 +36,8 @@ export const FormRow :  React.FC<Props> = (props) => {
                 const className = `p-col-12 p-md-${props.customWidth ? props.customWidth : 12/ length} `
                 const items = props.children.map((el : any, index: number) => {
                     return <div key={index} className={className + ' ' + styles.noPadding + ' ' + styles.marginBottom }>
-                        {el.props.name ?
-                            <p className="p-radiobutton-label">{el.props.name}</p>
+                        {lookForName(el) ?
+                            <p className="p-radiobutton-label">{lookForName(el)}</p>
                             :null
                         }
                         {el}

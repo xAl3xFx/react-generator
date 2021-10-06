@@ -8,7 +8,6 @@ import {FormRow} from "../templates/FormRow";
 
 
 const PrimereactPage = ({components}: any) => {
-    const cardClassName = (i: number) => `p-col-12 p-md-${12 / i}`;
     const cardStyle = {
         height: "40px",
         border: ".5px solid lightgray",
@@ -49,6 +48,7 @@ const PrimereactPage = ({components}: any) => {
                             <FormRow>
                                 {
                                     (row || []).map((el: any, colIndex: number) => {
+                                        console.log(el)
                                         return cloneElement(el, {key: colIndex}, [<DroppableComponent
                                             droppableId={`ph-${rowIndex}-${colIndex}`}
                                             items={components[`ph-${rowIndex}-${colIndex}`] || []}/>])

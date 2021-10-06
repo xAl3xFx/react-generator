@@ -1,11 +1,10 @@
 import DroppableComponent from "./DroppableComponent";
+import {Dropdown} from "primereact/dropdown";
 
 const PrimereactComponents = ({components} : any) => {
 
     return <>
-        <div className={'p-d-flex p-flex-column p-col-12 p-ai-start'}>
-                <DroppableComponent className={'p-col-12'} droppableId={'components'} items={components} />
-        </div>
+        <DroppableComponent className={'p-grid p-fluid'} droppableId={'components'} items={components} />
     </>
 }
 

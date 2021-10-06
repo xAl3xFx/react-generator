@@ -6,11 +6,13 @@ import {DragDropContext, DraggingStyle, NotDraggingStyle} from "react-beautiful-
 import PrimereactPage from "./PrimereactPage";
 import * as _ from 'lodash';
 import {InputText} from "primereact/inputtext";
+import {Dropdown} from "primereact/dropdown";
 
 const PrimereactGenerator = () => {
     const [components, setComponents] = useState([
-        {id: '1', content: <Button disabled label={'Button1'} className={'p-col-12 '}/>},
-        {id: '2', content: <InputText disabled placeholder={'InputText'} className={'p-col-12 '}/>},
+        {id: '1', content: <Button disabled label={'Button1'} name={'asd'} className={'p-inputwrapper'} />},
+        {id: '2', content: <InputText disabled placeholder={'InputText'} name={'asd'} />},
+        {id: '3', content: <Dropdown disabled placeholder={'Dropdown'} name={'asd'} />},
     ]);
 
     const [distributedComponents, setDistributedComponents] = useState({});
@@ -22,7 +24,13 @@ const PrimereactGenerator = () => {
 
         const newDistributedComponents : any = _.cloneDeep(distributedComponents);
 
-        newDistributedComponents[result.destination.droppableId] = [{id: new Date().getTime().toString(), content: components[result.source.index].content}]
+        newDistributedComponents[result.destination.droppableId] = [{
+            id: new Date().getTime().toString(), content:
+                <div className="p-inputgroup p-col-12 p-p-0">
+                    {components[result.source.index].content}
+                    <Button icon="pi pi-cog" className="p-button-warning"/>
+                </div>
+        }]
         // const newComponents = reorder(
         //     components,
         //     result.source.index,
