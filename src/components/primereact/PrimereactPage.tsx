@@ -1,13 +1,18 @@
 import DroppableComponent from "./DroppableComponent";
-import {cloneElement, useEffect, useState} from "react";
+import {cloneElement, useState} from "react";
 import {Toolbar} from "primereact/toolbar";
 import {SplitButton} from "primereact/splitbutton";
 import * as _ from 'lodash'
 import {Card} from "primereact/card";
 import {FormRow} from "../templates/FormRow";
+import { useDispatch } from "react-redux";
+import { formRowActions } from '../../store/formRow';
+import {Button} from "primereact/button";
 
 
-const PrimereactPage = ({components}: any) => {
+const PrimereactPage = ({ components, handleRowDelete } : any) => {
+    const dispatch = useDispatch();
+
     const cardStyle = {
         height: "40px",
         border: ".5px solid lightgray",
@@ -29,9 +34,16 @@ const PrimereactPage = ({components}: any) => {
         const columns = [];
         for (let i = 0; i < columnsCount; i++)
             columns.push(<div style={cardStyle}></div>);
-        const newPlaceHolders = _.clone(placeHolders);
-        newPlaceHolders.push(columns);
-        setPlaceholders(newPlaceHolders);
+        const newPlaceholders = _.clone(placeHolders);
+        newPlaceholders.push(columns);
+        setPlaceholders(newPlaceholders);
+    }
+
+    const deleteRow = ( index: number ) => {
+        let newPlaceholders = _.clone(placeHolders);
+        newPlaceholders.splice(index, 1);
+        setPlaceholders(newPlaceholders);
+        handleRowDelete(index);
     }
 
     const leftContents = <>
@@ -45,20 +57,27 @@ const PrimereactPage = ({components}: any) => {
                 <Card>
                     {
                         placeHolders.map((row: any, rowIndex: number) =>
-                            <FormRow>
-                                {
-                                    (row || []).map((el: any, colIndex: number) => {
-                                        console.log(el)
-                                        return cloneElement(el, {key: colIndex}, [<DroppableComponent
-                                            droppableId={`ph-${rowIndex}-${colIndex}`}
-                                            items={components[`ph-${rowIndex}-${colIndex}`] || []}/>])
-                                    })
-                                }
-                            </FormRow>
+                            <div className={"p-col-12 p-d-flex "}>
+                                <div className={"p-col-11"}>
+                                    <FormRow>
+                                        {
+                                            (row || []).map((el: any, colIndex: number) => {
+                                                const droppableId = `ph-${rowIndex}-${colIndex}`;
+                                                dispatch(formRowActions.createColumnName({ droppableId : droppableId, name : ''}))
+                                                return cloneElement(el, {key: colIndex}, [<DroppableComponent
+                                                    droppableId={ droppableId }
+                                                    items={components[droppableId] || []}/>])
+                                            })
+                                        }
+                                    </FormRow>
+                                </div>
+                                <div className={'p-col-1 p-d-flex p-ai-center'}>
+                                    <Button onClick={() => deleteRow(rowIndex)} className={'p-button-danger'} style={{marginBottom: '-0.75rem', width: '100%'}} icon={'pi pi-trash'} />
+                                </div>
+                            </div>
                         )
                     }
                 </Card>
-
             </div>
         }
     </>

@@ -4,7 +4,6 @@ import {Draggable, Droppable} from "react-beautiful-dnd";
 const DroppableComponent = ({items, droppableId} : any) => {
 
     const DroppableItem = ({ item, index } : any) =>  {
-        console.log(item)
     return (
             <Draggable key={index} draggableId={item.id} index={index}>
                 {provided => (
