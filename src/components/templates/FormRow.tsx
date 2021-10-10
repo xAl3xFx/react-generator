@@ -42,7 +42,7 @@ export const FormRow: React.FC<Props> = (props) => {
                 const className = `p-col-12 p-md-${props.customWidth ? props.customWidth : 12 / length} `
                 const items = props.children.map((el: any, index: number) => {
                     const droppableId = getDroppableId(el);
-                    const label = formRow[droppableId];
+                    const label = formRow[droppableId].elementLabel;
                     return <div key={index} className={className + ' ' + styles.noPadding + ' ' + styles.marginBottom}>
                         {droppableId ?
                             <p className="p-radiobutton-label p-text-left" style={{minHeight: '1.3125rem'}}>{label}</p>

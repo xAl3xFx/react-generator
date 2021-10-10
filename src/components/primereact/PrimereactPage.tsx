@@ -5,10 +5,9 @@ import {SplitButton} from "primereact/splitbutton";
 import * as _ from 'lodash'
 import {Card} from "primereact/card";
 import {FormRow} from "../templates/FormRow";
-import { useDispatch } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { formRowActions } from '../../store/formRow';
 import {Button} from "primereact/button";
-
 
 const PrimereactPage = ({ components, handleRowDelete } : any) => {
     const dispatch = useDispatch();
@@ -63,7 +62,7 @@ const PrimereactPage = ({ components, handleRowDelete } : any) => {
                                         {
                                             (row || []).map((el: any, colIndex: number) => {
                                                 const droppableId = `ph-${rowIndex}-${colIndex}`;
-                                                dispatch(formRowActions.createColumnName({ droppableId : droppableId, name : ''}))
+                                                dispatch(formRowActions.createElementLabel({ droppableId : droppableId, elementLabel : ''}))
                                                 return cloneElement(el, {key: colIndex}, [<DroppableComponent
                                                     droppableId={ droppableId }
                                                     items={components[droppableId] || []}/>])
