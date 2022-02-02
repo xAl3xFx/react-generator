@@ -8,6 +8,7 @@ import "primereact/resources/primereact.min.css"
 import 'primeicons/primeicons.css'
 import store from './store/index';
 import {Provider} from "react-redux";
+import {SidebarContextProvider} from "./context/SidebarContext";
 
 PrimeReact.ripple = true;
 
@@ -15,7 +16,9 @@ function App() {
   return (
     <div className="App">
         <Provider store={store}>
-            <PrimereactGenerator />
+            <SidebarContextProvider>
+                <PrimereactGenerator />
+            </SidebarContextProvider>
         </Provider>
     </div>
   );

@@ -64,6 +64,7 @@ const PrimereactPage = ({ components, handleRowDelete } : any) => {
                                                 const droppableId = `ph-${rowIndex}-${colIndex}`;
                                                 dispatch(formRowActions.createElementLabel({ droppableId : droppableId, elementLabel : ''}))
                                                 return cloneElement(el, {key: colIndex}, [<DroppableComponent
+                                                    key={droppableId}
                                                     droppableId={ droppableId }
                                                     items={components[droppableId] || []}/>])
                                             })
@@ -71,7 +72,7 @@ const PrimereactPage = ({ components, handleRowDelete } : any) => {
                                     </FormRow>
                                 </div>
                                 <div className={'p-col-1 p-d-flex p-ai-center'}>
-                                    <Button onClick={() => deleteRow(rowIndex)} className={'p-button-danger'} style={{marginBottom: '-0.75rem', width: '100%'}} icon={'pi pi-trash'} />
+                                    <Button onClick={() => deleteRow(rowIndex)} key={10} className={'p-button-danger'} style={{marginBottom: '-0.75rem', width: '100%'}} icon={'pi pi-trash'} />
                                 </div>
                             </div>
                         )
