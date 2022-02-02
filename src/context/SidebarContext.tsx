@@ -1,5 +1,6 @@
 import React, {createContext, useContext, useEffect, useRef, useState} from 'react';
 import {Sidebar} from "primereact/sidebar";
+import '../assets/styles/sidebar.css'
 
 export const SidebarContext = createContext<any>(null);
 export const SidebarContextProvider = (props : any) => {
@@ -29,7 +30,7 @@ export const SidebarContextProvider = (props : any) => {
 
     return<>
         <SidebarContext.Provider value={{ showSidebar, hideSidebar, isShown }}>
-            <Sidebar position={'right'} style={{ marginTop : "100px" }} className={'responsiveSidebar'} visible={isShown} onHide={hideSidebar} blockScroll icons={() => (
+            <Sidebar position={'right'} className={'responsiveSidebar'} visible={isShown} onHide={hideSidebar} blockScroll icons={() => (
                 <React.Fragment>
                     <h1>{heading}</h1>
                 </React.Fragment>

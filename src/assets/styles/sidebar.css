@@ -1,0 +1,152 @@
+:root{
+    --primary-color: #6366F1
+}
+
+.responsiveSidebar {
+    width: 100% !important;
+}
+
+@media only screen and (min-width: 520px) {
+    .responsiveSidebar {
+        width: 80% !important;
+    }
+}
+
+@media only screen and (min-width: 769px) {
+    .responsiveSidebar {
+        width: 50% !important;
+    }
+}
+
+@media only screen and (min-width: 1025px) {
+    .responsiveSidebar {
+        width: 40% !important;
+    }
+}
+
+@media only screen and (min-width: 1201px) {
+    .responsiveSidebar {
+        width: 35% !important;
+    }
+}
+
+@media only screen and (min-width: 1501px) {
+    .responsiveSidebar {
+        width: 30% !important;
+    }
+}
+
+@media only screen and (min-width: 1999px) {
+    .responsiveSidebar {
+        width: 25% !important;
+    }
+}
+
+.toggleSidebar {
+    display: flex;
+    position: absolute;
+    top: 270px;
+    right: 0;
+    overflow: hidden;
+    cursor: pointer;
+    line-height: 52px;
+    width: 52px !important;
+    height: 52px;
+    z-index: 10000;
+    border-radius: 5px;
+}
+
+.toggleSidebar .pi {
+    font-size: 26px;
+}
+
+.layout-config{
+    position: fixed;
+    padding: 0;
+    top: 0;
+    right: 0;
+    display: block;
+    width: 550px;
+    z-index: 1101;
+    height: 100%;
+    transition: all .3s;
+    transform: translate3d(100%, 0px, 0px);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.layout-config-content-wrapper{
+    position: relative;
+    height: 100%;
+}
+
+.layout-config-button{
+    display: block;
+    position: absolute;
+    width: 52px;
+    height: 52px;
+    line-height: 52px;
+    background-color: var(--primary-color);
+    text-align: center;
+    color: var(--primary-color-text);
+    top: 270px;
+    left: -51px;
+    z-index: -1;
+    overflow: hidden;
+    cursor: pointer;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    -webkit-animation-name: rubberBand;
+    -moz-animation-name: rubberBand;
+    animation-name: rubberBand;
+    -webkit-animation-duration: 1s;
+    -moz-animation-duration: 1s;
+    animation-duration: 3s;
+    -webkit-animation-iteration-count: 3;
+    -moz-animation-iteration-count: 3;
+    animation-iteration-count: 30;
+    -webkit-animation-delay: 5s;
+    -moz-animation-delay: 5s;
+    animation-delay: 20s;
+}
+
+.layout-config .layout-config-content-wrapper .layout-config-button i{
+    font-size: 26px;
+    line-height: inherit;
+    cursor: pointer;
+    -webkit-transform: rotate(
+            1turn);
+    -moz-transform: rotate(1turn);
+    transform: rotate(
+            1turn);
+    -webkit-transition: -webkit-transform 1s;
+    transition: -webkit-transform 1s;
+    -moz-transition: transform 1s,-moz-transform 1s;
+    transition: transform 1s;
+    transition: transform 1s,-webkit-transform 1s,-moz-transform 1s;
+}
+
+.layout-config.layout-config-active .layout-config-content-wrapper .layout-config-button i {
+    -webkit-transform: rotate(
+            0deg);
+    -moz-transform: rotate(0deg);
+    transform: rotate(
+            0deg);
+}
+
+.layout-config.layout-config-active {
+    transform: translate3d(0px, 0px, 0px);
+    transition: all .3s;
+}
+.layout-config .p-link:focus{
+    border: none;
+    box-shadow: none !important;
+}
+
+.default-sidebar-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 1rem;
+}
